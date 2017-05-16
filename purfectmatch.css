@@ -1,0 +1,37 @@
+            
+body {
+    margin-top: 70px;
+    background: url(images/dmitriy-karfagenskiy-100688.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: Lato;
+    min-height: 100%;
+}
+            
+h1, h3 {    
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5),
+                 2px 2px 4px rgba(0,0,0,0.2);    
+}
+            
+h1 {
+    font-weight: bold;
+    font-size: 5em;
+}
+            
+#content {
+    text-align: center;
+    margin-top: 25%;
+}
+            
+hr {
+    color: white;
+    width: 50%;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+            
+.btn {
+    font-size: 20px;
+}

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>jQuery</title>
+                
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>        
+    
+        <script src="jquery-ui-1.12.1/jquery-ui.js"></script>
+        
+        <link href="jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet">
+
+        <style type="text/css">
+            
+            body, p {
+                margin:0px;
+                padding:0px;
+            }
+            
+            #topbar {
+                height:40px;
+                background-color: #EEEEEE;
+            }
+            
+            #title {
+                font-size: 30px;
+                font-weight: bold;
+                display: inline;
+                margin-left: 5px;
+                float:left;
+            }
+            
+            #topBarButtonContainer {
+                height:40px;
+                width: 400px;
+                margin: 0 auto;
+                padding-left: 200px;
+                
+            }
+            
+            .topBarButton {
+                height:90%;
+                float:left;
+                background-color:#F5F9FF;
+                border: 1px solid grey;
+                border-right:none;
+                padding: 0 15px;
+                font-size: 15px;
+                margin-top: 1px;
+            }
+            
+            button {
+                outline:none;
+            }
+            
+            #htmlButton {
+                border-radius: 5px 0 0 5px;
+            }
+            
+            #outputButton {
+                border-radius: 0 5px 5px 0;
+                border-right: 1px solid grey;
+            }
+            
+            .clickedColor {
+                background-color: #EEEEEE;
+            }
+            
+            .hoverColor {
+                background-color: lightblue;
+            }
+            
+            .content-div {
+                height:740px;
+                width: 24.9%;
+                float:left;
+                border-right: 1px solid #E6E6E6;
+            }
+            
+            #OutputDiv {
+                border-right: none;
+            }
+            
+            .hidden {
+                display:none;
+            }
+            
+            .content-div textarea {
+                height:100%;
+                width:97%;
+                resize: none;
+            }
+            
+            .content-div iframe {
+                height:100%;
+                width:100%;
+            }
+            
+        </style>
+        
+    </head>
+
+    <body>
+        
+        <div id="topbar">
+            
+            <p id="title">Code Player</p>
+            
+            <div id="topBarButtonContainer">
+            
+                <button id="htmlButton" class="topBarButton">HTML</button>
+                
+                <button id="cssButton" class="topBarButton">CSS</button>
+                
+                <button id="jsButton" class="topBarButton">JavaScript</button>
+                
+                <button id="outputButton" class="topBarButton">Output</button>
+                
+            </div>
+            
+        </div>
+        
+        <div id="maincontentbar">
+        
+            <div id="HTMLDiv" class="content-div">
+                
+                <textarea id="HTMLtextarea"></textarea>
+                
+            </div>
+            
+            <div id="CSSDiv" class="content-div">
+                
+                <textarea id="CSStextarea"></textarea>
+                
+            </div>
+            
+            <div id="JavaScriptDiv" class="content-div">
+                
+                <textarea id="JavaScripttextarea"></textarea>
+                
+            </div>
+            
+            <div id="OutputDiv" class="content-div">
+                
+                <iframe id="Outputiframe">
+                
+                
+                </iframe>
+                
+            </div>
+        
+        </div>
+        
+        <script type="text/javascript" >
+            
+            $(".topBarButton").hover(function(){
+                
+                $(this).toggleClass("hoverColor");
+                
+            });
+            
+            $(".topBarButton").click(function(){
+                
+                $(this).toggleClass("clickedColor");
+                
+                $("#"+($(this).html() + "Div")).toggleClass("hidden");
+                
+                var numHidden = $(".hidden").length;
+                                
+                var newWidth = ($("body").width()/(4-numHidden)) - 4;
+                
+                newWidth = (newWidth/($("body").width())) * 100;
+                
+                $(".content-div").css("width",newWidth+"%");
+                
+            });
+            
+            $("#Outputiframe").contents().find("body").html("<div>"+ $("#HTMLtextarea").val() + "</div>")
+            
+            $("#HTMLtextarea").keyup(function(){
+                 //alert($("#HTMLtextarea").val());
+                $("#Outputiframe").contents().find("body").html("<div>"+ $("#HTMLtextarea").val() + "</div>")
+            });
+            
+            $("#CSStextarea").keyup(function(){
+                 //alert($("#HTMLtextarea").val());
+                $("#Outputiframe").contents().find("head").html("<style type='text/css'>"+ $("#CSStextarea").val() + "</style>")
+            });
+            
+            $("#JavaScripttextarea").keyup(function(){
+                 //alert($("#HTMLtextarea").val());
+                document.getElementById("Outputiframe").contentWindow.eval($("#JavaScripttextarea").val());
+                
+                
+            });
+            
+        </script>
+        
+    </body>
+    
+</html>
